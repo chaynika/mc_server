@@ -44,9 +44,11 @@ def svm_test(test_file):
     model_file = 'svm_model_1.sav'
     loaded_model = pickle.load(open(model_file, 'rb'))
     test_data = pd.read_csv(test_file, sep=',', header=None)
-    temp_idx = test_file[2]
+    filename = test_file.split('/')[-1]
+    #print "filename: ", filename
+    temp_idx = filename[2]
     if temp_idx == '0':
-        user_num = int(test_file[3])
+        user_num = int(filename[3])
     else:
         user_num = 10
     test_data_transpose = test_data.T
@@ -57,11 +59,12 @@ def svm_test(test_file):
     print "count: ", count
     perc = float(count)/float(len(result)) * 100
     if perc > 10:
-        return 1
-    else:
         return 0
+    else:
+        return 1
 
 
 if __name__ == "__main__":
     result = svm_test(sys.argv[1])
+    print result
     exit(result)
