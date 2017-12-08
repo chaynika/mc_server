@@ -54,9 +54,9 @@ def svm_test(test_file):
     test_data_transpose = test_data.T
     # pdb.set_trace()
     result = loaded_model.predict(test_data_transpose)
-    print "user num: ", user_num
+#    print "user num: ", user_num
     count = (result == user_num).sum()
-    print "count: ", count
+#    print "count: ", count
     perc = float(count)/float(len(result)) * 100
     if perc > 10:
         return 0
@@ -66,5 +66,5 @@ def svm_test(test_file):
 
 if __name__ == "__main__":
     result = svm_test(sys.argv[1])
-    print result
+#    print result
     exit(result)
